@@ -12,7 +12,7 @@ public class Main {
 
         int chosenMethod = 2; // Chosen method variable to use different methods. Set 1 for brute force method, set 2 for ant colony optimization approach
         int chosenMapType = 2; // Type of the output map. Set 1 for shortest path, set 2 for pheromone intensities graph
-        String fileName = "input04.txt"; // Name of the file
+        String fileName = "input04.txt"; // Name of the input file
 
         // Hyperparameters of the ant colony optimization approach
         double iteration; // Number of iterations
@@ -32,63 +32,63 @@ public class Main {
             initialPheromoneIntensity = 0.1;
             q = 0.0001; // Constant value for calculating delta
         } else if (fileName.equals("input02.txt")) {
-            iteration = 100; // Number of iterations
-            ants = 100; // Number of ants per iteration
-            degradationFactor = 0.9; // Pheromone degradation factor
-            alpha = 0.7; // Power of the pheromone level in the edge value formula
-            beta = 1.6; // Power of the distance in the edge value formula
+            iteration = 100;
+            ants = 100;
+            degradationFactor = 0.9;
+            alpha = 0.7;
+            beta = 1.6;
             initialPheromoneIntensity = 0.1;
-            q = 0.0001; // Constant value for calculating delta
+            q = 0.0001;
         } else if (fileName.equals("input03.txt")) {
-            iteration = 100; // Number of iterations
-            ants = 100; // Number of ants per iteration
-            degradationFactor = 0.9; // Pheromone degradation factor
-            alpha = 0.7; // Power of the pheromone level in the edge value formula
-            beta = 1.5; // Power of the distance in the edge value formula
+            iteration = 100;
+            ants = 100;
+            degradationFactor = 0.9;
+            alpha = 0.7;
+            beta = 1.5;
             initialPheromoneIntensity = 0.1;
-            q = 0.0001; // Constant value for calculating delta
+            q = 0.0001;
         } else if (fileName.equals("input04.txt")) {
-            iteration = 100; // Number of iterations
-            ants = 100; // Number of ants per iteration
-            degradationFactor = 0.9; // Pheromone degradation factor
-            alpha = 1.05; // Power of the pheromone level in the edge value formula
-            beta = 1.05; // Power of the distance in the edge value formula
+            iteration = 100;
+            ants = 100;
+            degradationFactor = 0.9;
+            alpha = 1.05;
+            beta = 1.05;
             initialPheromoneIntensity = 0.1;
-            q = 0.0001; // Constant value for calculating delta
+            q = 0.0001;
         } else {
-            iteration = 100; // Number of iterations
-            ants = 100; // Number of ants per iteration
-            degradationFactor = 0.9; // Pheromone degradation factor
-            alpha = 1.0; // Power of the pheromone level in the edge value formula
-            beta = 3.5; // Power of the distance in the edge value formula
+            iteration = 100;
+            ants = 100;
+            degradationFactor = 0.9;
+            alpha = 1.0;
+            beta = 3.5;
             initialPheromoneIntensity = 0.1;
-            q = 0.0001; // Constant value for calculating delta
+            q = 0.0001;
         }
 
-        File file = new File(fileName); // Create file
+        File file = new File(fileName); // Create a file
 
         if (!file.exists()) { // If file does not exist, exit the program
             System.out.printf("%s can not be found.", fileName); // Prints error message
             System.exit(1); // Exit the program
         }
 
-        Scanner inputFile = new Scanner(file); // Create scanner object
+        Scanner inputFile = new Scanner(file); // Create a scanner object
         ArrayList<Double> xCoordinates = new ArrayList<>(); // Arraylist of x coordinates
         ArrayList<Double> yCoordinates = new ArrayList<>(); // Arraylist of y coordinates
 
         while (inputFile.hasNextLine()) { // Reads the file
             String line = inputFile.nextLine(); // Reads the next line
-            String[] lineParts = line.split(","); // Split the line
+            String[] lineParts = line.split(",");
             double xCoordinate = Double.parseDouble(lineParts[0]); // First element is the x coordinate
             double yCoordinate = Double.parseDouble(lineParts[1]); // Second element is the x coordinate
             xCoordinates.add(xCoordinate);
             yCoordinates.add(yCoordinate);
         }
-        inputFile.close(); // Close the file
+        inputFile.close();
 
         if (chosenMethod == 1) { // If chosen method is 1 use the brute force method
             bruteForceMethod(xCoordinates,yCoordinates); // Brute force method
-        } else { // else use the ant colony optimization approach
+        } else { // Else use the ant colony optimization approach
             antColonyOptimization(iteration, ants, degradationFactor,alpha, beta, initialPheromoneIntensity, q,xCoordinates, yCoordinates,chosenMapType); // ant colony optimization approach
         }
     }
@@ -305,10 +305,10 @@ public class Main {
                 StdDraw.setPenColor(StdDraw.BLACK);
                 StdDraw.text(xCoordinates.get(i), yCoordinates.get(i), String.valueOf(i + 1)); // Writes the number of the circles
             }
-            StdDraw.setPenColor(StdDraw.PRINCETON_ORANGE); // Set color to princeton orange for migros
-            StdDraw.filledCircle(xCoordinates.getFirst(), yCoordinates.getFirst(), 0.025); // Draws the circle of the migros
+            StdDraw.setPenColor(StdDraw.PRINCETON_ORANGE); // Set color to princeton orange for the warehouse
+            StdDraw.filledCircle(xCoordinates.getFirst(), yCoordinates.getFirst(), 0.025); // Draws the circle of the warehouse
             StdDraw.setPenColor(StdDraw.BLACK);
-            StdDraw.text(xCoordinates.getFirst(), yCoordinates.getFirst(), "1"); // Writes "1" on the migros circle
+            StdDraw.text(xCoordinates.getFirst(), yCoordinates.getFirst(), "1"); // Writes "1" on the warehouse circle
 
         } else { // If the chosen map type is the pheromone intensities graph type
 
@@ -385,10 +385,10 @@ public class Main {
             StdDraw.setPenColor(StdDraw.BLACK);
             StdDraw.text(xCoordinates.get(i),yCoordinates.get(i),String.valueOf(i+1)); // Writes the number of the circles
         }
-        StdDraw.setPenColor(StdDraw.PRINCETON_ORANGE); // Set color to princeton orange for migros
-        StdDraw.filledCircle(xCoordinates.getFirst(),yCoordinates.getFirst(),0.025); // Draws the circle of the migros
+        StdDraw.setPenColor(StdDraw.PRINCETON_ORANGE); // Set color to princeton orange for the warehouse
+        StdDraw.filledCircle(xCoordinates.getFirst(),yCoordinates.getFirst(),0.025); // Draws the circle of the warehouse
         StdDraw.setPenColor(StdDraw.BLACK);
-        StdDraw.text(xCoordinates.getFirst(),yCoordinates.getFirst(),"1"); // Writes "1" on the migros circle
+        StdDraw.text(xCoordinates.getFirst(),yCoordinates.getFirst(),"1"); // Writes "1" on the warehouse circle
         StdDraw.show(); // Show the drawing
     }
 
@@ -431,8 +431,8 @@ public class Main {
      * @return The total distance of the cycle
      */
     public static double calculateDistance(int[] route,ArrayList<Double> xCoordinates,ArrayList<Double> yCoordinates) {
-        int migrosIndex = 0;
-        int previousIndex = migrosIndex;
+        int warehouseIndex = 0;
+        int previousIndex = warehouseIndex;
         double totalDistance = 0;
 
         for (int j = 0; j < route.length; j++) {
@@ -444,11 +444,11 @@ public class Main {
             totalDistance = totalDistance + distance; // Add distances
             previousIndex = route[j]; // Update the previous node
         }
-        double migrosX = xCoordinates.get(0);
-        double migrosY = yCoordinates.get(0);
+        double warehouseX = xCoordinates.get(0);
+        double warehouseY = yCoordinates.get(0);
         double lastX = xCoordinates.get(route[route.length-1]); // Get the last x coordinate
         double lastY = yCoordinates.get(route[route.length-1]); // Get the last y coordinate
-        double lastDistance = Math.sqrt(Math.pow(migrosX-lastX,2) + Math.pow(migrosY-lastY,2)); // Calculate the distance between the migros and the last node
+        double lastDistance = Math.sqrt(Math.pow(warehouseX-lastX,2) + Math.pow(warehouseY-lastY,2)); // Calculate the distance between the warehouse and the last node
         totalDistance = totalDistance + lastDistance; // Add the distance
         return totalDistance;
     }
