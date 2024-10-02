@@ -2,7 +2,7 @@ import java.io.File;
 import java.io.FileNotFoundException;
 import java.util.*;
 /**
- * Program to solve traveling salesman problem with 2 different methods. Brute force method and ant colony optimization approach
+ * Program to find the quickest route for a delivery car with 2 different methods. Brute force method and ant colony optimization approach
  * @author Alaaddin Eren Namlı
  * @since Date: 11.05.2024
  */
